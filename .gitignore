@@ -54,6 +54,7 @@ coverage.xml
 
 # Django stuff:
 *.log
+<<<<<<< HEAD
 local_settings.py
 
 # Flask stuff:
@@ -62,6 +63,8 @@ instance/
 
 # Scrapy stuff:
 .scrapy
+=======
+>>>>>>> 6008e0ccf2368595274db4b17ba3c5b4cddba54f
 
 # Sphinx documentation
 docs/_build/
@@ -69,6 +72,7 @@ docs/_build/
 # PyBuilder
 target/
 
+<<<<<<< HEAD
 # IPython Notebook
 .ipynb_checkpoints
 
@@ -90,3 +94,7 @@ ENV/
 
 # Rope project settings
 .ropeproject
+=======
+#Ipython Notebook
+.ipynb_checkpoints
+>>>>>>> 6008e0ccf2368595274db4b17ba3c5b4cddba54f

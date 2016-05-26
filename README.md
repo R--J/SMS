@@ -1,8 +1,8 @@
-# Association Management System
+# SMS
 
-Course Project for System Analysis & Design at SYSU.
+Society Managment System for System A&amp;D course at SYSU.
 
 ## Prerequisite
 
-- Python >= 2.7.1
+- Python >= 2.7.11
 - MySQL >= 14.14
