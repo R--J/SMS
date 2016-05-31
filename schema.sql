@@ -5,9 +5,9 @@
 # http://www.sequelpro.com/
 # https://github.com/sequelpro/sequelpro
 #
-# Host: 127.0.0.1 (MySQL 5.7.11)
-# Database: sms
-# Generation Time: 2016-05-31 08:46:27 +0000
+# Host: localhost (MySQL 5.7.10)
+# Database: sms_db
+# Generation Time: 2016-05-31 13:54:08 +0000
 # ************************************************************
 
 
@@ -66,26 +66,26 @@ LOCK TABLES `member` WRITE;
 
 INSERT INTO `member` (`id`, `stu_id`, `soc_id`, `level`)
 VALUES
-	(5,'13311111',1,'0');
+  (5,'13311111',1,'0');
 
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
 DELIMITER ;;
-/*!50003 SET SESSION SQL_MODE="ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION" */;;
+/*!50003 SET SESSION SQL_MODE="ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION" */;;
 /*!50003 CREATE */ /*!50017 DEFINER=`root`@`localhost` */ /*!50003 TRIGGER `member_insert` AFTER INSERT ON `member` FOR EACH ROW update society
 set society.total_member = (
-	select count(stu_id) 
-	from member 
-	where member.soc_id = new.soc_id
+  select count(stu_id) 
+  from member 
+  where member.soc_id = new.soc_id
 )
 where society.soc_id = new.soc_id */;;
-/*!50003 SET SESSION SQL_MODE="ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION" */;;
+/*!50003 SET SESSION SQL_MODE="ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION" */;;
 /*!50003 CREATE */ /*!50017 DEFINER=`root`@`localhost` */ /*!50003 TRIGGER `member_delete` AFTER DELETE ON `member` FOR EACH ROW update society
 set society.total_member = (
-	select count(stu_id) 
-	from member 
-	where member.soc_id = old.soc_id
+  select count(stu_id) 
+  from member 
+  where member.soc_id = old.soc_id
 )
 where society.soc_id = old.soc_id */;;
 DELIMITER ;
@@ -101,8 +101,8 @@ CREATE TABLE `society` (
   `soc_id` int(3) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL DEFAULT '',
   `founded_date` date NOT NULL,
-  `tutor` varchar(20) NOT NULL DEFAULT '',
-  `founder` varchar(20) DEFAULT 'Unknown',
+  `tutor` varchar(20) DEFAULT 'None',
+  `founder` varchar(20) NOT NULL DEFAULT 'Unknown',
   `president` varchar(20) NOT NULL DEFAULT '',
   `total_member` int(3) unsigned NOT NULL DEFAULT '1' COMMENT 'update after member table changed',
   PRIMARY KEY (`soc_id`)
@@ -113,7 +113,7 @@ LOCK TABLES `society` WRITE;
 
 INSERT INTO `society` (`soc_id`, `name`, `founded_date`, `tutor`, `founder`, `president`, `total_member`)
 VALUES
-	(1,'abc','2008-07-04','abc','Unknown','abc',1);
+  (1,'abc','2008-07-04','abc','Unknown','abc',1);
 
 /*!40000 ALTER TABLE `society` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -129,7 +129,7 @@ CREATE TABLE `user` (
   `name` varchar(20) NOT NULL DEFAULT '',
   `password` varchar(20) NOT NULL DEFAULT '',
   `email` varchar(50) NOT NULL,
-  `gender` int(1) unsigned DEFAULT '0' COMMENT '0: unknown, 1: male, 2: female',
+  `gender` int(1) unsigned NOT NULL COMMENT '0:male, 1: female',
   `phone` varchar(20) DEFAULT NULL,
   `age` int(3) unsigned DEFAULT '0',
   PRIMARY KEY (`stu_id`)
@@ -140,9 +140,9 @@ LOCK TABLES `user` WRITE;
 
 INSERT INTO `user` (`stu_id`, `name`, `password`, `email`, `gender`, `phone`, `age`)
 VALUES
-	('13311111','alice','123','abc',2,NULL,20),
-	('13311112','bob','123','abc',1,NULL,20),
-	('13354023','cjh','123','abcdefg',1,'13750036269',20);
+  ('13311111','alice','123','abc',2,NULL,20),
+  ('13311112','bob','123','abc',1,NULL,20),
+  ('13354023','cjh','123','abcdefg',1,'13750036269',20);
 
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;

@@ -2,11 +2,7 @@
 # -*- coding: utf-8 -*-
 
 class Member:
-	def __init__(self, stu_id=None, name=None, age=0, gender=None, phone=None, level=0):
+	def __init__(self, stu_id, soc_id, level):
 		self.stu_id = stu_id
-		self.name = name
-		self.age = age
-		self.gender = gender
-		self.phone = phone
+		self.soc_id = soc_id
 		self.level = level
-	
