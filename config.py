@@ -6,7 +6,13 @@ import os
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 # Database
-
+DATABASE = {
+    'HOST': '127.0.0.1',  # localhost
+    'PORT': '3306',
+    'USER': 'root',
+    'PASSWD': '123',
+    'DBNAME': 'sms',
+}
 
 # Application threads
 THREADS_PER_PAGE = 2
