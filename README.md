@@ -21,7 +21,7 @@ Society Managment System for System A&D course at SYSU.
 ## Quick Start
 
 0. Switch to the root folder.
-1. Start MySQL Server
+1. Start MySQL Server.
 3. Set database: `mysql -u [username] -p [database_name] < schema.sql`.
 4. Modify `DATABASE` info in `config.py`.
 5. Run `python run.py`.
