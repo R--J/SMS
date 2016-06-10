@@ -17,6 +17,7 @@ def not_found(error):
 from sms.controllers.auth import auth
 modules = [
     auth,
+    society_control,
 ]
 
 # Add modules to app
