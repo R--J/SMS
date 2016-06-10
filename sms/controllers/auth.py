@@ -8,7 +8,7 @@ from sms.models.user import User
 auth = Blueprint('auth', __name__)
 
 
-@auth.route('/signin/', methods=['GET', 'POST'])
+@auth.route('/login/', methods=['GET', 'POST'])
 def signin():
     if request.method == 'POST':
         try:
@@ -23,39 +23,38 @@ def signin():
         else:
             session['logged_in'] = user.stu_id
             flash('You were logged in')
-            return redirect(url_for('auth.userinfo'))
+            return redirect(url_for('auth.mainborder'))
     else:
         if session.get('logged_in'):
-            return redirect(url_for('auth.userinfo'))
-        return render_template('auth/signin.html')
+            return redirect(url_for('auth.mainborder'))
+        return render_template('auth/login.html')
 
 
-@auth.route('/signup/', methods=['GET', 'POST'])
+@auth.route('/register/', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
         form = request.form
-        new_user = User(stu_id=form['stuid'], name=form['name'], password=form['password'], email=form['email'])
+        new_user = User(stu_id=form['stuid'], name=form['username'], password=form['password'], email=form['email'])
         try:
             User.add_user(new_user)  # Database
-            return redirect(url_for('auth.signin'))
+            return redirect(url_for('auth.mainborder'))
         except BaseException, e:
             print 'Sign Up Fail: {0}'.format(e)
-            return render_template('auth/signup.html')
+            return render_template('auth/register.html')
     else:
         if session.get('logged_in'):
-            return redirect(url_for('auth.userinfo'))
-        return render_template('auth/signup.html')
+            return redirect(url_for('auth.mainborder'))
+        return render_template('auth/register.html')
 
-
-@auth.route('/')
-def userinfo():
+@auth.route('/index/')
+def mainborder():
     if not session.get('logged_in'):
-        return redirect(url_for('auth.signin'))
+        return redirect(url_for('auth.login'))
     else:
         try:
             stu_id = session.get('logged_in')
             user = User.get_user_by_id(stu_id)  # Database
-            return render_template('auth/info.html', user=user)
+            return render_template('index.html')
         except BaseException, e:
             print 'Get User Fail: {0}'.format(e)
             return redirect(url_for('auth.signin'))
@@ -65,4 +64,4 @@ def userinfo():
 def signout():
     session.pop('logged_in', None)
     flash('You were logged out')
-    return redirect(url_for('auth.signin'))
+    return redirect(url_for('auth.login'))

@@ -1,11 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-#from sms.repository.handler import *
-#from sms.models.member import Member
-import sys
-sys.path.append("../repository")
-from handler import *
+from sms.repository.handler import *
+from sms.models.member import Member
+# import sys
+# sys.path.append("../repository")
+# from handler import *
 
 class User:
     def __init__(self, stu_id, name, password, email, gender=0, phone='', age=0, about_me=None):

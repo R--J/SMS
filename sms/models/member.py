@@ -2,17 +2,19 @@
 # -*- coding: utf-8 -*-
 
 
-class Member(User):
-    def __init__(self, stu_id, soc_id, join_data, level=0, valid=0):
+class Member:
+    def __init__(self, stu_id, soc_id, join_data, member_info, level=0, valid=0):
 
         self.stu_id = stu_id
         self.soc_id = soc_id
         self.join_data = join_data
+        self.member_info = member_info
         self.level = level
         self.valid = valid
 
     def update(self, level, valid):
         field_assign_list = [
+            'member_info=' + member_info,
             'level=' + level,
             'valid=' + valid
         ]

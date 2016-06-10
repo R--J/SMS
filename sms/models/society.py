@@ -1,11 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-#from sms.repository.handler import *
-#from sms.models.member import Member
-import sys
-sys.path.append("../repository")
-from handler import *
+# import sys
+# sys.path.append("../repository")
+# from handler import *
 
 class Society:
 	def __init__(self, soc_id, name, about_us, founded_data, tutor=None,
@@ -70,8 +68,8 @@ class Society:
 if __name__ == '__main__':
 	s1 = Society.get_society_list(0)
 	for _s in s1:
-		print _s.name, _s.about_us
+		print _s.name, _s.about_us, _s.founded_data
 	s2 = Society.get_society_list(1)
 	for _s in s2:
-		print _s.name, _s.about_us
+		print _s.name, _s.about_us, _s.founded_data
 
