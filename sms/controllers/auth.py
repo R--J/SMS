@@ -12,7 +12,7 @@ auth = Blueprint('auth', __name__)
 def signin():
     if request.method == 'POST':
         try:
-            user = User.get_user(request.form['stuid'])  # Database
+            user = User.get_user_by_id(request.form['stuid'])  # Database
         except BaseException, e:
             print 'Get User Fail: {0}'.format(e)
 
@@ -54,7 +54,7 @@ def userinfo():
     else:
         try:
             stu_id = session.get('logged_in')
-            user = User.get_user(stu_id)  # Database
+            user = User.get_user_by_id(stu_id)  # Database
             return render_template('auth/info.html', user=user)
         except BaseException, e:
             print 'Get User Fail: {0}'.format(e)

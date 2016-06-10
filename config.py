@@ -10,8 +10,8 @@ DATABASE = {
     'HOST': '127.0.0.1',  # localhost
     'PORT': '3306',
     'USER': 'root',
-    'PASSWD': '123',
-    'DBNAME': 'sms',
+    'PASSWD': '',
+    'DBNAME': 'sms_db',
 }
 
 # Application threads

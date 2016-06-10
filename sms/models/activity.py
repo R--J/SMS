@@ -13,3 +13,4 @@ class Activity:
 		self.end_time = end_time
 		self.soc_id = soc_id
 	
+

@@ -2,20 +2,29 @@
 # -*- coding: utf-8 -*-
 
 import MySQLdb
-from flask import g
-from sms import app
-DATABASE = app.config['DATABASE']
+# from flask import g
+# from sms import app
+# DATABASE = app.config['DATABASE']
+DATABASE = {
+    'HOST': '127.0.0.1',  # localhost
+    'PORT': '3306',
+    'USER': 'root',
+    'PASSWD': '',
+    'DBNAME': 'sms_db',
+}
 
 
 def get_db():
-    db = getattr(g, 'db', None)
+    # db = getattr(g, 'db', None)
+    db = getattr(__name__, 'db', None)
     if db is None:
-        db = g.db = MySQLdb.connect(
+        db = MySQLdb.connect(
             host=DATABASE['HOST'],
             user=DATABASE['USER'],
             passwd=DATABASE['PASSWD'],
             db=DATABASE['DBNAME']
         )
+        # g.db = db
     return db
 
 
